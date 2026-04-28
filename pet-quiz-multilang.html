@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- ═══════════════════════════════════════════════════════
+     PRIMARY SEO
+     For Google Blogger: copy these tags into your theme's
+     <head> section (Theme → Edit HTML → find </head>)
+     ═══════════════════════════════════════════════════════ -->
+<title>Dog or Cat Quiz — Free 8-Question Pet Personality Test</title>
+<meta name="description" content="Dog or Cat? Take our free 8-question quiz and find out which pet perfectly matches your lifestyle. Available in 8 languages. Try it now!"/>
+<meta name="keywords" content="dog or cat quiz, pet quiz, which pet is right for me, dog vs cat, pet personality test, dog or cat test, perro o gato quiz, chien ou chat quiz, 犬 猫 テスト, 강아지 고양이 테스트, собака или кошка тест, free pet quiz, dog quiz, cat quiz"/>
+<meta name="author" content="Davit Zakaryan"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>
+<meta name="theme-color" content="#1a1040"/>
+
+<!-- OPEN GRAPH (Facebook, Telegram, WhatsApp, VK) -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Dog or Cat Quiz"/>
+<meta property="og:title" content="Dog or Cat Quiz — Free Pet Personality Test"/>
+<meta property="og:description" content="Dog or Cat? Take our free 8-question quiz and find out which pet perfectly matches your lifestyle."/>
+<meta property="og:url" content="https://dogorcatquiz.blogspot.com/"/>
+<meta property="og:image" content="https://dogorcatquiz.blogspot.com/p/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- TWITTER / X CARD -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@dogorcatquiz"/>
+<meta name="twitter:title" content="Dog or Cat Quiz — Free Pet Personality Test"/>
+<meta name="twitter:description" content="Dog or Cat? Take our free 8-question quiz and find out which pet perfectly matches your lifestyle."/>
+<meta name="twitter:image" content="https://dogorcatquiz.blogspot.com/p/og-image.jpg"/>
+
+<!-- CANONICAL -->
+<link rel="canonical" href="https://dogorcatquiz.blogspot.com/"/>
+
+<!-- Bootstrap 5 Grid -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+
+<!-- STRUCTURED DATA: WebApplication schema (Google reads this even inside Blogger) -->
+<script type="application/ld+json" id="ld-json">{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Dog or Cat Quiz",
+  "description":"Free 8-question interactive quiz to find out whether a dog or cat suits your lifestyle. Available in 8 languages.",
+  "url":"https://dogorcatquiz.blogspot.com/",
+  "applicationCategory":"LifestyleApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "author":{"@type":"Person","name":"Davit Zakaryan"},
+  "inLanguage":["en","es","ko","zh","ja","ru","hy","fr"],
+  "isPartOf":{"@type":"WebSite","name":"Dog or Cat Quiz","url":"https://dogorcatquiz.blogspot.com/"}
+}</script>
+<title>Dog or Cat Quiz — Free 8-Question Pet Personality Test</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;min-height:100vh;}
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0d0d1a 0%,#1a1040 50%,#0d1a30 100%);
+  font-family:'Segoe UI','Trebuchet MS',sans-serif;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow-x:hidden;position:relative;
+  padding-top:80px;padding-bottom:0;
+}
+
+/* ── LANGUAGE DROPDOWN ── */
+#lang-switcher{
+  position:fixed;top:0;left:0;right:0;
+  z-index:1000;
+  background:rgba(10,10,25,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding:0 16px;
+  height:54px;
+  display:flex;align-items:center;justify-content:flex-end;
+}
+#lang-dropdown-wrap{position:relative;}
+#lang-trigger{
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(255,255,255,0.15);
+  border-radius:99px;
+  padding:7px 14px 7px 10px;
+  color:#fff;
+  font-size:0.82rem;font-weight:700;
+  cursor:pointer;
+  display:flex;align-items:center;gap:7px;
+  font-family:inherit;
+  transition:all 0.18s ease;
+  white-space:nowrap;user-select:none;
+}
+#lang-trigger:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);}
+#lang-trigger .trigger-flag{font-size:1.1rem;}
+#lang-trigger .trigger-arrow{font-size:0.65rem;opacity:0.6;transition:transform 0.2s ease;margin-left:2px;}
+#lang-trigger.open .trigger-arrow{transform:rotate(180deg);}
+#lang-menu{
+  display:none;
+  position:absolute;top:calc(100% + 8px);right:0;
+  background:rgba(15,12,35,0.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1.5px solid rgba(255,255,255,0.12);
+  border-radius:16px;padding:6px;min-width:175px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.5);
+  z-index:999;animation:fadeUp .18s ease;
+}
+#lang-menu.open{display:block;}
+.lang-item{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 12px;border-radius:10px;
+  cursor:pointer;color:rgba(255,255,255,0.7);
+  font-size:0.85rem;font-weight:600;
+  transition:all 0.15s ease;
+  font-family:inherit;border:none;background:transparent;width:100%;text-align:left;
+}
+.lang-item:hover{background:rgba(255,255,255,0.08);color:#fff;}
+.lang-item.active{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,140,0,0.15));color:#FFD700;}
+.lang-item .item-flag{font-size:1.1rem;}
+.lang-item .item-check{margin-left:auto;font-size:0.75rem;color:#FFD700;opacity:0;}
+.lang-item.active .item-check{opacity:1;}
+
+/* ── MAIN APP ── */
+#app{
+  z-index:1;width:100%;
+  padding:1rem 0 1.5rem;
+  position:relative;
+}
+
+/* FLOATERS */
+.floater{
+  position:fixed;pointer-events:none;z-index:0;opacity:0;
+  animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(110vh) rotate(0deg);opacity:0;}
+  10%{opacity:.18;}90%{opacity:.12;}
+  100%{transform:translateY(-15vh) rotate(400deg);opacity:0;}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bounceIn{
+  0%{transform:scale(.4) translateY(40px);opacity:0;}
+  65%{transform:scale(1.08) translateY(-6px);opacity:1;}
+  100%{transform:scale(1) translateY(0);opacity:1;}
+}
+@keyframes popIn{
+  0%{transform:scale(.5);opacity:0;}
+  70%{transform:scale(1.06);}
+  100%{transform:scale(1);opacity:1;}
+}
+@keyframes wiggle{
+  0%,100%{transform:rotate(-5deg) scale(1);}
+  50%{transform:rotate(5deg) scale(1.1);}
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+}
+@keyframes slideRight{
+  from{opacity:0;transform:translateX(-25px);}
+  to{opacity:1;transform:translateX(0);}
+}
+@keyframes glow{
+  0%,100%{box-shadow:0 0 20px var(--glow,#FFD70066);}
+  50%{box-shadow:0 0 50px var(--glow,#FFD70066),0 0 90px var(--glow,#FFD70066);}
+}
+@keyframes confettiAnim{
+  0%{transform:translateY(0) rotate(0deg);opacity:1;}
+  100%{transform:translateY(80px) rotate(720deg);opacity:0;}
+}
+@keyframes barGrow{from{width:0;}to{width:var(--tw);}}
+
+/* SCREENS */
+.screen{animation:fadeUp .4s ease;}
+
+/* INTRO */
+#intro{text-align:center;animation:bounceIn .7s ease;padding-top:1rem;}
+#intro .big-emoji{font-size:4.5rem;animation:wiggle 2s ease-in-out infinite;display:block;margin-bottom:.5rem;}
+#intro h1{color:#fff;font-size:1.75rem;font-weight:900;margin:.4rem 0 .3rem;line-height:1.2;}
+#intro h1 .dog{color:#FFD700;}
+#intro h1 .cat{color:#FF6B9D;}
+#intro p{color:rgba(255,255,255,.55);font-size:.95rem;margin:.7rem 0 .3rem;line-height:1.6;}
+#intro small{color:rgba(255,255,255,.3);font-size:.78rem;display:block;margin-bottom:1.8rem;}
+.start-btn{
+  background:linear-gradient(135deg,#FFD700,#FF8C00);
+  border:none;border-radius:50px;padding:.9rem 2.5rem;
+  font-size:1.1rem;font-weight:900;color:#1a0a00;
+  cursor:pointer;transition:all .2s ease;
+  box-shadow:0 8px 25px rgba(255,200,0,.35);
+  letter-spacing:1px;text-transform:uppercase;font-family:inherit;
+}
+.start-btn:hover{transform:scale(1.06) translateY(-2px);}
+.start-btn:active{transform:scale(0.97);}
+
+/* PROGRESS */
+.progress-info{display:flex;justify-content:space-between;color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:5px;flex-wrap:wrap;gap:4px;}
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-bottom:1.3rem;}
+.progress-fill{height:100%;background:linear-gradient(90deg,#FFD700,#FF6B9D);border-radius:99px;transition:width .5s ease;}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1.5px solid rgba(255,255,255,.12);
+  border-radius:24px;padding:1.6rem 1.4rem;
+}
+.q-emoji{font-size:3rem;display:block;text-align:center;margin-bottom:.6rem;animation:pulse 2.5s ease-in-out infinite;}
+.q-text{color:#fff;font-size:1.1rem;font-weight:800;text-align:center;line-height:1.35;margin-bottom:1.4rem;}
+
+/* OPTIONS */
+.options{display:flex;flex-direction:column;gap:.6rem;}
+.opt{
+  background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(255,255,255,.14);
+  border-radius:13px;padding:.8rem 1rem;
+  text-align:left;cursor:pointer;color:#fff;
+  display:flex;align-items:center;gap:.7rem;
+  transition:all .18s ease;
+  font-family:inherit;width:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+.opt:hover:not(:disabled){transform:translateX(6px) scale(1.01);border-color:rgba(255,255,255,.4);}
+.opt:active:not(:disabled){transform:scale(.97);}
+.opt .num{font-size:1rem;min-width:22px;text-align:center;flex-shrink:0;}
+.opt .label{font-weight:600;font-size:.9rem;line-height:1.3;text-align:left;}
+.opt.sel-dog{background:linear-gradient(135deg,rgba(255,215,0,.8),rgba(255,140,0,.8));border-color:#FFD700;transform:translateX(8px);}
+.opt.sel-cat{background:linear-gradient(135deg,rgba(255,107,157,.8),rgba(255,20,147,.8));border-color:#FF6B9D;transform:translateX(8px);}
+.opt.fading{opacity:0;transform:translateX(18px);transition:all .28s ease;}
+
+/* SCORE BARS */
+.score-bars{display:flex;gap:.8rem;margin-top:1rem;}
+.score-bar-wrap{flex:1;}
+.score-bar-label{display:flex;justify-content:space-between;font-weight:700;font-size:.7rem;margin-bottom:4px;opacity:.8;}
+.score-bar-track{height:5px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;}
+.score-bar-fill{height:100%;border-radius:99px;transition:width .5s ease;}
+
+/* RESULT */
+#result{animation:popIn .65s ease;text-align:center;}
+.result-card{
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:28px;
+  padding:2rem 1.5rem;
+  animation:glow 3s ease-in-out infinite;
+}
+.result-emoji{font-size:5rem;display:block;margin-bottom:.4rem;animation:wiggle 2s ease-in-out infinite;}
+.result-title{font-size:1.35rem;font-weight:900;margin:.6rem 0 1rem;line-height:1.3;}
+/* SHARE */
+.share-wrap{margin-top:1.1rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,0.08);text-align:center;}
+.share-label{font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.6px;text-transform:uppercase;margin-bottom:.65rem;}
+.share-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.sh-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;
+  font-size:.9rem;font-weight:700;text-decoration:none;
+  border:1.5px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.06);
+  color:#fff;transition:all .18s ease;
+  font-family:inherit;cursor:pointer;
+}
+.sh-btn:hover{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.35);transform:scale(1.12);}
+.sh-copy{width:auto;padding:0 16px;border-radius:99px;font-size:.78rem;gap:5px;}
+.reasons{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.3rem;}
+.reason{border-radius:11px;padding:.65rem .9rem;color:rgba(255,255,255,.85);font-size:.87rem;text-align:left;display:flex;gap:.5rem;align-items:flex-start;}
+.reason .check{font-weight:900;flex-shrink:0;}
+.breeds-label{color:rgba(255,255,255,.4);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;}
+.breeds{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:1.3rem;}
+.breed-tag{border-radius:99px;padding:.3rem .8rem;font-size:.8rem;font-weight:600;}
+.final-bars{display:flex;gap:.8rem;margin-bottom:1.5rem;}
+.final-bar-wrap{flex:1;text-align:center;}
+.final-bar-num{font-weight:800;font-size:.95rem;margin-bottom:4px;}
+.final-bar-track{height:7px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;}
+.final-bar-fill{height:100%;border-radius:99px;transition:width .8s ease;}
+.restart-btn{
+  border:none;border-radius:50px;padding:.8rem 2.2rem;
+  font-size:.95rem;font-weight:800;color:#0d0d0d;
+  cursor:pointer;transition:all .2s ease;
+  letter-spacing:.4px;font-family:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+.restart-btn:hover{transform:scale(1.04);}
+.restart-btn:active{transform:scale(.96);}
+
+/* FOOTER */
+#site-footer{
+  width:100%;text-align:center;
+  padding:18px 16px 14px;
+  color:rgba(255,255,255,0.22);
+  font-size:0.72rem;
+  letter-spacing:0.4px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  margin-top:10px;
+}
+
+.confetti-dot{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:0;}
+
+/* RESPONSIVE */
+@media(max-width:400px){
+  #intro h1{font-size:1.45rem;}
+  #intro .big-emoji{font-size:3.8rem;}
+  .card{padding:1.3rem 1rem;}
+  .q-text{font-size:1rem;}
+  .opt .label{font-size:.85rem;}
+  .result-title{font-size:1.15rem;}
+  #lang-trigger{padding:6px 10px 6px 8px;font-size:.76rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE DROPDOWN -->
+<div id="lang-switcher">
+  <div id="lang-dropdown-wrap">
+    <button type="button" id="lang-trigger" onclick="toggleLangMenu()" aria-haspopup="listbox" aria-expanded="false">
+      <span class="trigger-flag">🇺🇸</span>
+      <span id="trigger-label">English</span>
+      <span class="trigger-arrow">▼</span>
+    </button>
+    <div id="lang-menu" role="listbox" aria-label="Select language">
+      <button type="button" class="lang-item active" onclick="selectLang('en')" data-lang="en"><span class="item-flag">🇺🇸</span> English <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('es')" data-lang="es"><span class="item-flag">🇪🇸</span> Español <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('ko')" data-lang="ko"><span class="item-flag">🇰🇷</span> 한국어 <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('zh')" data-lang="zh"><span class="item-flag">🇨🇳</span> 中文 <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('ja')" data-lang="ja"><span class="item-flag">🇯🇵</span> 日本語 <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('ru')" data-lang="ru"><span class="item-flag">🇷🇺</span> Русский <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('hy')" data-lang="hy"><span class="item-flag">🇦🇲</span> Հայերեն <span class="item-check">✓</span></button>
+      <button type="button" class="lang-item" onclick="selectLang('fr')" data-lang="fr"><span class="item-flag">🇫🇷</span> Français <span class="item-check">✓</span></button>
+    </div>
+  </div>
+</div>
+
+<main id="app" role="main">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+
+  <!-- INTRO -->
+  <div id="intro" class="screen">
+    <span class="big-emoji">🐶🐱</span>
+    <h1><span class="dog" id="i-dog">Dog</span> or <span class="cat" id="i-cat">Cat</span>?</h1>
+    <p id="i-sub">8 questions — find out who is perfect for you 🔍</p>
+    <small id="i-hint">Answer honestly — your pet depends on it!</small>
+    <button type="button" class="start-btn" onclick="startQuiz()" id="i-btn">Start! 🚀</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="screen" style="display:none;">
+    <div class="progress-info" role="status" aria-live="polite">
+      <span id="q-counter">Question 1 of 8</span>
+      <span id="q-scores">🐶 0 | 🐱 0</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="card">
+      <span class="q-emoji" id="q-emoji">🏠</span>
+      <div class="q-text" id="q-text">Question</div>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="score-bars">
+      <div class="score-bar-wrap">
+        <div class="score-bar-label" style="color:#FFD700"><span id="lb-dog">🐶 Dog</span><span id="dog-score-label">0</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" id="dog-bar" style="background:#FFD700;width:0%"></div></div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-label" style="color:#FF6B9D"><span id="lb-cat">🐱 Cat</span><span id="cat-score-label">0</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" id="cat-bar" style="background:#FF6B9D;width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="screen" style="display:none;">
+    <div class="result-card" id="result-card">
+      <span class="result-emoji" id="res-emoji">🐶</span>
+      <div class="result-title" id="res-title"></div>
+      <div class="reasons" id="res-reasons"></div>
+      <div class="breeds-label" id="res-breeds-label">Recommended breeds:</div>
+      <div class="breeds" id="res-breeds"></div>
+      <div class="final-bars">
+        <div class="final-bar-wrap">
+          <div class="final-bar-num" style="color:#FFD700" id="final-dog-num">🐶 0</div>
+          <div class="final-bar-track"><div class="final-bar-fill" id="final-dog-bar" style="background:#FFD700;width:0%"></div></div>
+        </div>
+        <div class="final-bar-wrap">
+          <div class="final-bar-num" style="color:#FF6B9D" id="final-cat-num">🐱 0</div>
+          <div class="final-bar-track"><div class="final-bar-fill" id="final-cat-bar" style="background:#FF6B9D;width:0%"></div></div>
+        </div>
+      </div>
+      <button type="button" class="restart-btn" id="restart-btn" onclick="restart()">🔄 Try Again</button>
+      <!-- SHARE -->
+      <div class="share-wrap">
+        <div class="share-label" id="share-label">Share your result 🐾</div>
+        <div class="share-row">
+          <a class="sh-btn" id="sh-tw" href="#" target="_blank" rel="noopener noreferrer" title="X / Twitter">𝕏</a>
+          <a class="sh-btn" id="sh-wh" href="#" target="_blank" rel="noopener noreferrer" title="WhatsApp">W</a>
+          <a class="sh-btn" id="sh-tg" href="#" target="_blank" rel="noopener noreferrer" title="Telegram">TG</a>
+          <a class="sh-btn" id="sh-vk" href="#" target="_blank" rel="noopener noreferrer" title="VK">VK</a>
+          <button type="button" class="sh-btn sh-copy" id="sh-copy" onclick="copyShareLink()">🔗 Copy</button>
+        </div>
+      </div>
+    </div><!-- /result-card -->
+  </div><!-- /result -->
+
+      </div><!-- /col -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+</main><!-- /app -->
+
+<footer id="site-footer">
+  <p>&copy; <span id="footer-year"></span> Davit Zakaryan. All rights reserved.</p>
+</footer>
+
+<!--
+  ╔═══════════════════════════════════════════════════════╗
+  ║  GOOGLE BLOGGER SETUP — READ THIS                     ║
+  ║  1. Publish this file as a Blogger PAGE               ║
+  ║     (Pages → New page → Edit HTML → paste all)        ║
+  ║  2. Set the page TITLE to:                            ║
+  ║     "Dog or Cat Quiz — Free Pet Personality Test"     ║
+  ║  3. In Blogger Settings → Search preferences →        ║
+  ║     Meta tags → enable and add the description:       ║
+  ║     "Dog or Cat? Free 8-question quiz to find out     ║
+  ║      which pet matches your lifestyle."               ║
+  ║  4. In Theme → Edit HTML, find </head> and paste:     ║
+  ║     <meta name="keywords" content="dog or cat quiz,   ║
+  ║     pet quiz, which pet is right for me"/>            ║
+  ║     <meta name="author" content="Davit Zakaryan"/>    ║
+  ╚═══════════════════════════════════════════════════════╝
+-->
+
+<!-- Blogger-body JSON-LD: Google reads this even inside Blogger pages -->
+<script type="application/ld+json" id="ld-json-body">{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Dog or Cat Quiz",
+  "description":"Free 8-question interactive quiz to find out whether a dog or cat suits your lifestyle. Available in 8 languages.",
+  "url":"https://dogorcatquiz.blogspot.com/",
+  "applicationCategory":"LifestyleApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "author":{"@type":"Person","name":"Davit Zakaryan"},
+  "inLanguage":["en","es","ko","zh","ja","ru","hy","fr"],
+  "isPartOf":{"@type":"WebSite","name":"Dog or Cat Quiz","url":"https://dogorcatquiz.blogspot.com/"}
+}</script>
+
+<!-- Noscript: visible to crawlers and users without JavaScript -->
+<noscript>
+  <div style="max-width:540px;margin:2rem auto;padding:1.5rem;font-family:sans-serif;color:#222;background:#fff;border-radius:12px;">
+    <h1>Dog or Cat Quiz — Free Pet Personality Test</h1>
+    <p>Not sure if you're a dog person or a cat person? Take our free 8-question quiz and find out which pet perfectly matches your lifestyle!</p>
+    <p>Available in 8 languages: English, Español, 한국어, 中文, 日本語, Русский, Հայերեն, Français.</p>
+    <p>Please enable JavaScript to start the quiz.</p>
+  </div>
+</noscript>
+
+<script>
+// ── TRANSLATIONS ──────────────────────────────────────────────
+const T = {
+  en:{
+    dogWord:"Dog", catWord:"Cat",
+    sub:"8 questions — find out who is perfect for you 🔍",
+    hint:"Answer honestly — your pet depends on it!",
+    btn:"Start! 🚀",
+    qOf:"Question {n} of {total}",
+    lbDog:"🐶 Dog", lbCat:"🐱 Cat",
+    breedsLabel:"Recommended breeds:",
+    restart:"🔄 Try Again",
+    shareLabel:"Share your result 🐾",
+    shareText:"I got: {title}! 🐶🐱 Are you a Dog or Cat person? Take the quiz!",
+    pageTitle:"Dog or Cat Quiz — Free 8-Question Pet Personality Test",
+    metaDesc:"Dog or Cat? Free 8-question quiz to discover which pet perfectly matches your lifestyle. Trusted by pet lovers worldwide. Try it now!",
+    metaKeywords:"dog or cat quiz, pet quiz, which pet is right for me, dog vs cat, pet personality test, dog or cat test, free pet quiz",
+    questions:[
+      {emoji:"🏠",text:"Where do you live?",options:[
+        {text:"Small apartment, no balcony",dog:1,cat:4},
+        {text:"Regular apartment with balcony",dog:2,cat:3},
+        {text:"Large apartment / house",dog:4,cat:2},
+        {text:"House with a big yard 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"How many hours are you home each day?",options:[
+        {text:"Almost never — total workaholic 😅",dog:1,cat:5},
+        {text:"3–5 hours",dog:2,cat:4},
+        {text:"8–10 hours",dog:4,cat:2},
+        {text:"I work from home, never leave 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"How active are you?",options:[
+        {text:"Sofa is my best friend 🛋️",dog:1,cat:5},
+        {text:"Walk sometimes when I feel like it",dog:2,cat:3},
+        {text:"Walk every single day",dog:4,cat:2},
+        {text:"Marathon runner, gym fanatic 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"Monthly pet budget?",options:[
+        {text:"Minimum — barely surviving myself 😭",dog:1,cat:3},
+        {text:"Up to $40",dog:2,cat:4},
+        {text:"Up to $100",dog:3,cat:3},
+        {text:"My pet deserves spa treatments 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"How often do you travel?",options:[
+        {text:"Every month — constant traveler",dog:1,cat:4},
+        {text:"A few times a year",dog:2,cat:3},
+        {text:"Very rarely",dog:4,cat:3},
+        {text:"Never — total homebody",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"How do you handle mess and noise?",options:[
+        {text:"I need perfect silence and order",dog:1,cat:4},
+        {text:"A little mess — I can handle it",dog:2,cat:4},
+        {text:"Chaos? No problem 😅",dog:4,cat:3},
+        {text:"My life is already full chaos 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"What kind of relationship do you want?",options:[
+        {text:"Pet lives its life, I live mine",dog:1,cat:5},
+        {text:"Pet around sometimes, not clingy",dog:1,cat:4},
+        {text:"Friends, play together every day",dog:5,cat:2},
+        {text:"Pet must follow me everywhere! 🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"Ready for grooming and hygiene?",options:[
+        {text:"Minimum effort — let it clean itself",dog:1,cat:5},
+        {text:"Can brush / wash occasionally",dog:2,cat:4},
+        {text:"Ready to bathe and walk regularly",dog:4,cat:2},
+        {text:"Every day is fine — I'm not lazy!",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"A DOG is perfect for you!",
+        subs:["Loyal friend, always by your side","Motivates you to go outside and move","Unconditional love and devotion 🥰"],
+        breeds:["Labrador 🟡","Beagle 🐕","Husky 🐺","Corgi 🍑"]},
+      cat:{emoji:"🐱",title:"A CAT is perfect for you!",
+        subs:["Independent, doesn't need constant attention","Fine alone while you're at work","Minimal care — maximum coziness"],
+        breeds:["British Shorthair 🇬🇧","Maine Coon 🦁","Scottish Fold 👂","Sphinx 👽"]},
+      both:{emoji:"🐶🐱",title:"Both would suit you!",
+        subs:["You're a universal pet owner","You could get both — they'd be best friends!","Just pick the one that touches your heart 💕"],
+        breeds:["Cat + Dog = Family 🏡","Corgi + British = ❤️","Husky + Maine Coon = 🔥"]},
+    }
+  },
+
+  es:{
+    dogWord:"Perro", catWord:"Gato",
+    sub:"8 preguntas — descubre quién es perfecto para ti 🔍",
+    hint:"¡Responde con honestidad — tu mascota depende de ello!",
+    btn:"¡Empezar! 🚀",
+    qOf:"Pregunta {n} de {total}",
+    lbDog:"🐶 Perro", lbCat:"🐱 Gato",
+    breedsLabel:"Razas recomendadas:",
+    restart:"🔄 Intentar de nuevo",
+    shareLabel:"Comparte tu resultado 🐾",
+    shareText:"Mi resultado: {title}! 🐶🐱 ¿Eres de perro o gato? ¡Haz el quiz!",
+    pageTitle:"Perro o Gato — Quiz Gratuito de 8 Preguntas | Test de Mascota",
+    metaDesc:"¿Perro o Gato? Quiz gratuito de 8 preguntas para descubrir qué mascota es perfecta para tu estilo de vida. ¡Pruébalo ahora!",
+    metaKeywords:"quiz perro o gato, test mascota, perro o gato, cual mascota es para mi, perro vs gato test",
+    questions:[
+      {emoji:"🏠",text:"¿Dónde vives?",options:[
+        {text:"Apartamento pequeño sin balcón",dog:1,cat:4},
+        {text:"Apartamento normal con balcón",dog:2,cat:3},
+        {text:"Apartamento grande / casa",dog:4,cat:2},
+        {text:"Casa con jardín grande 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"¿Cuántas horas estás en casa al día?",options:[
+        {text:"Casi nunca — soy adicto al trabajo 😅",dog:1,cat:5},
+        {text:"3–5 horas",dog:2,cat:4},
+        {text:"8–10 horas",dog:4,cat:2},
+        {text:"Trabajo desde casa, nunca salgo 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"¿Qué tan activo eres?",options:[
+        {text:"El sofá es mi mejor amigo 🛋️",dog:1,cat:5},
+        {text:"Salgo a pasear a veces",dog:2,cat:3},
+        {text:"Paseo todos los días",dog:4,cat:2},
+        {text:"Corro maratones, voy al gym 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"¿Cuánto puedes gastar en tu mascota al mes?",options:[
+        {text:"Lo mínimo — apenas sobrevivo 😭",dog:1,cat:3},
+        {text:"Hasta €40",dog:2,cat:4},
+        {text:"Hasta €100",dog:3,cat:3},
+        {text:"Mi mascota merece spa 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"¿Con qué frecuencia viajas?",options:[
+        {text:"Cada mes — viajero constante",dog:1,cat:4},
+        {text:"Unas pocas veces al año",dog:2,cat:3},
+        {text:"Muy rara vez",dog:4,cat:3},
+        {text:"Nunca — soy hogareño total",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"¿Cómo llevas el desorden y el ruido?",options:[
+        {text:"Necesito silencio y orden perfectos",dog:1,cat:4},
+        {text:"Un poco de desorden está bien",dog:2,cat:4},
+        {text:"¿Caos? ¡Sin problema! 😅",dog:4,cat:3},
+        {text:"Mi vida ya es caos total 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"¿Qué tipo de relación quieres con tu mascota?",options:[
+        {text:"Que viva su vida, yo la mía",dog:1,cat:5},
+        {text:"Que esté cerca a veces, sin apegos",dog:1,cat:4},
+        {text:"Amigos, jugar juntos cada día",dog:5,cat:2},
+        {text:"¡Que me siga a todos lados! 🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"¿Estás listo para el cuidado e higiene?",options:[
+        {text:"Mínimo esfuerzo — que se limpie solo",dog:1,cat:5},
+        {text:"Puedo cepillar / bañar de vez en cuando",dog:2,cat:4},
+        {text:"Listo para bañar y pasear regularmente",dog:4,cat:2},
+        {text:"Todos los días está bien — ¡no soy perezoso!",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"¡Un PERRO es perfecto para ti!",
+        subs:["Amigo leal, siempre a tu lado","Te motiva a salir y moverte","Amor y devoción incondicionales 🥰"],
+        breeds:["Labrador 🟡","Beagle 🐕","Husky 🐺","Corgi 🍑"]},
+      cat:{emoji:"🐱",title:"¡Un GATO es perfecto para ti!",
+        subs:["Independiente, no necesita atención constante","Se arregla solo mientras trabajas","Cuidado mínimo — máxima comodidad"],
+        breeds:["Británico de pelo corto 🇬🇧","Maine Coon 🦁","Scottish Fold 👂","Esfinge 👽"]},
+      both:{emoji:"🐶🐱",title:"¡Los dos te vendrían bien!",
+        subs:["Eres un dueño universal","Podrías tener los dos — ¡serían amigos!","Solo elige el que toque tu corazón 💕"],
+        breeds:["Gato + Perro = Familia 🏡","Corgi + Británico = ❤️","Husky + Maine Coon = 🔥"]},
+    }
+  },
+
+  ko:{
+    dogWord:"강아지", catWord:"고양이",
+    sub:"8가지 질문 — 나에게 딱 맞는 반려동물 찾기 🔍",
+    hint:"솔직하게 답하세요 — 반려동물이 기다리고 있어요!",
+    btn:"시작! 🚀",
+    qOf:"{n} / {total} 번째 질문",
+    lbDog:"🐶 강아지", lbCat:"🐱 고양이",
+    breedsLabel:"추천 품종:",
+    restart:"🔄 다시 하기",
+    shareLabel:"결과 공유하기 🐾",
+    shareText:"내 결과: {title}! 🐶🐱 당신은 강아지파? 고양이파? 테스트해보세요!",
+    pageTitle:"강아지 vs 고양이 — 무료 반려동물 테스트 (8문제)",
+    metaDesc:"강아지 vs 고양이? 8가지 무료 질문으로 내 라이프스타일에 땏 맞는 반려동물을 찾아보세요. 지금 바로 테스트하세요!",
+    metaKeywords:"강아지 고양이 테스트, 반려동물 퀘즈, 강아지 고양이 쿠이즈, 무료 반려동물 테스트",
+    questions:[
+      {emoji:"🏠",text:"어디에 살고 계세요?",options:[
+        {text:"발코니 없는 작은 아파트",dog:1,cat:4},
+        {text:"발코니 있는 일반 아파트",dog:2,cat:3},
+        {text:"넓은 아파트 / 주택",dog:4,cat:2},
+        {text:"큰 마당이 있는 단독주택 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"하루에 집에 있는 시간이 얼마나 되나요?",options:[
+        {text:"거의 없음 — 일중독자 😅",dog:1,cat:5},
+        {text:"3~5시간",dog:2,cat:4},
+        {text:"8~10시간",dog:4,cat:2},
+        {text:"재택근무, 거의 집에만 있어요 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"얼마나 활동적인 편인가요?",options:[
+        {text:"소파가 친구 🛋️",dog:1,cat:5},
+        {text:"가끔 산책해요",dog:2,cat:3},
+        {text:"매일 산책해요",dog:4,cat:2},
+        {text:"마라톤, 헬스 매니아 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"한 달에 반려동물에게 얼마나 쓸 수 있나요?",options:[
+        {text:"최소 — 나도 겨우 살아요 😭",dog:1,cat:3},
+        {text:"5만원 정도",dog:2,cat:4},
+        {text:"13만원 정도",dog:3,cat:3},
+        {text:"스파도 시켜줄 수 있어요 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"여행을 얼마나 자주 가나요?",options:[
+        {text:"매달 — 여행 중독",dog:1,cat:4},
+        {text:"1년에 몇 번",dog:2,cat:3},
+        {text:"거의 안 가요",dog:4,cat:3},
+        {text:"집돌이/집순이예요",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"어지럽고 시끄러운 환경은 어떤가요?",options:[
+        {text:"완벽한 고요함과 질서가 필요해요",dog:1,cat:4},
+        {text:"약간의 어수선함은 괜찮아요",dog:2,cat:4},
+        {text:"혼돈? 문제없어요 😅",dog:4,cat:3},
+        {text:"내 삶은 이미 혼돈 그 자체 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"반려동물과 어떤 관계를 원하나요?",options:[
+        {text:"각자의 삶을 살면 좋겠어요",dog:1,cat:5},
+        {text:"가끔 곁에 있어주면 좋겠어요",dog:1,cat:4},
+        {text:"매일 함께 놀고 싶어요",dog:5,cat:2},
+        {text:"항상 나를 따라다녔으면! 🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"그루밍과 위생 관리를 할 준비가 됐나요?",options:[
+        {text:"최소한 — 스스로 알아서 청결하면 좋겠어요",dog:1,cat:5},
+        {text:"가끔 빗질 / 목욕시킬 수 있어요",dog:2,cat:4},
+        {text:"정기적으로 목욕 및 산책 OK",dog:4,cat:2},
+        {text:"매일도 괜찮아요 — 부지런해요!",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"강아지가 딱 맞아요!",
+        subs:["항상 곁에 있는 충실한 친구","밖에 나가도록 동기부여를 줘요","무한한 사랑과 헌신 🥰"],
+        breeds:["래브라도 🟡","비글 🐕","허스키 🐺","코기 🍑"]},
+      cat:{emoji:"🐱",title:"고양이가 딱 맞아요!",
+        subs:["독립적이라 상시 관심이 필요 없어요","혼자서도 잘 있어요","관리 최소 — 아늑함 최대"],
+        breeds:["브리티시 숏헤어 🇬🇧","메인쿤 🦁","스코티시 폴드 👂","스핑크스 👽"]},
+      both:{emoji:"🐶🐱",title:"둘 다 잘 맞아요!",
+        subs:["어떤 반려동물이든 잘 키울 수 있어요","둘 다 키워도 좋아요 — 친구가 될 거예요!","마음이 끌리는 쪽을 선택하세요 💕"],
+        breeds:["고양이 + 강아지 = 가족 🏡","코기 + 브리티시 = ❤️","허스키 + 메인쿤 = 🔥"]},
+    }
+  },
+
+  zh:{
+    dogWord:"狗", catWord:"猫",
+    sub:"8个问题 — 找出最适合你的宠物 🔍",
+    hint:"诚实回答 — 你的宠物取决于此！",
+    btn:"开始！🚀",
+    qOf:"第 {n} / {total} 题",
+    lbDog:"🐶 狗", lbCat:"🐱 猫",
+    breedsLabel:"推荐品种：",
+    restart:"🔄 再来一次",
+    shareLabel:"分享你的结果 🐾",
+    shareText:"我的结果：{title}！🐶🐱 你是狗狗控还是猫咪控？快来测！",
+    pageTitle:"狗还是猫 — 免费宠物测试（8题）",
+    metaDesc:"狗还是猫？免费8题测试，发现最适合你生活方式的宠物。全球宠物爱好者信赖的宠物测试，快来试试吧！",
+    metaKeywords:"狗猫测试, 宠物测试, 狗猫性格测试, 免费宠物测试",
+    questions:[
+      {emoji:"🏠",text:"你住在哪里？",options:[
+        {text:"没有阳台的小公寓",dog:1,cat:4},
+        {text:"有阳台的普通公寓",dog:2,cat:3},
+        {text:"大公寓 / 独栋房",dog:4,cat:2},
+        {text:"有大院子的房子 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"你每天在家多少小时？",options:[
+        {text:"几乎不在家 — 工作狂 😅",dog:1,cat:5},
+        {text:"3~5小时",dog:2,cat:4},
+        {text:"8~10小时",dog:4,cat:2},
+        {text:"在家办公，基本不出门 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"你有多活跃？",options:[
+        {text:"沙发是我最好的朋友 🛋️",dog:1,cat:5},
+        {text:"偶尔散步",dog:2,cat:3},
+        {text:"每天都散步",dog:4,cat:2},
+        {text:"跑马拉松，健身达人 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"每月能为宠物花多少钱？",options:[
+        {text:"最少 — 自己都快撑不住了 😭",dog:1,cat:3},
+        {text:"约300元",dog:2,cat:4},
+        {text:"约700元",dog:3,cat:3},
+        {text:"宠物值得享受SPA 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"你多久旅行一次？",options:[
+        {text:"每个月 — 旅行狂",dog:1,cat:4},
+        {text:"一年几次",dog:2,cat:3},
+        {text:"很少出门",dog:4,cat:3},
+        {text:"从不 — 宅家族",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"你如何应对混乱和噪音？",options:[
+        {text:"我需要完美的安静和秩序",dog:1,cat:4},
+        {text:"一点点乱没关系",dog:2,cat:4},
+        {text:"混乱？没问题 😅",dog:4,cat:3},
+        {text:"我的生活已经一团乱 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"你想要什么样的关系？",options:[
+        {text:"各过各的生活",dog:1,cat:5},
+        {text:"偶尔陪伴就好",dog:1,cat:4},
+        {text:"每天一起玩",dog:5,cat:2},
+        {text:"必须时刻跟着我！🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"你准备好照顾宠物卫生了吗？",options:[
+        {text:"最少工作 — 让它自己保持干净",dog:1,cat:5},
+        {text:"偶尔梳毛 / 洗澡",dog:2,cat:4},
+        {text:"准备定期洗澡和遛弯",dog:4,cat:2},
+        {text:"每天都行 — 我不懒！",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"你最适合养狗！",
+        subs:["忠实的朋友，永远陪伴在你身边","激励你出门运动","无条件的爱与忠诚 🥰"],
+        breeds:["拉布拉多 🟡","比格犬 🐕","哈士奇 🐺","柯基 🍑"]},
+      cat:{emoji:"🐱",title:"你最适合养猫！",
+        subs:["独立性强，不需要时刻关注","你上班时它自己能待着","护理简单 — 舒适感满分"],
+        breeds:["英国短毛猫 🇬🇧","缅因猫 🦁","苏格兰折耳猫 👂","斯芬克斯 👽"]},
+      both:{emoji:"🐶🐱",title:"两种都适合你！",
+        subs:["你是全能宠物主人","两个都养也可以 — 它们会成为朋友！","选那个打动你心的 💕"],
+        breeds:["猫 + 狗 = 家 🏡","柯基 + 英短 = ❤️","哈士奇 + 缅因 = 🔥"]},
+    }
+  },
+
+  ja:{
+    dogWord:"犬", catWord:"猫",
+    sub:"8つの質問 — あなたにぴったりのペットを見つけよう 🔍",
+    hint:"正直に答えてください — ペットがあなたを待っています！",
+    btn:"スタート！🚀",
+    qOf:"{n} / {total} 問目",
+    lbDog:"🐶 犬", lbCat:"🐱 猫",
+    breedsLabel:"おすすめの犬種・猫種：",
+    restart:"🔄 もう一度",
+    shareLabel:"結果をシェア 🐾",
+    shareText:"診断結果：{title}！🐶🐱 あなたは犬派？猫派？クイズに挑戦！",
+    pageTitle:"犬 vs 猫 — 無料ペット診断クイズ（8問）",
+    metaDesc:"犬派？猫派？無料８問クイズであなたのライフスタイルに合ったペットを診断。８言語対応・今すぐ試してみよう！",
+    metaKeywords:"犬猫テスト, ペット診断, 犬猫クイズ, 無料ペットテスト, 犬起る猫起るテスト",
+    questions:[
+      {emoji:"🏠",text:"どこに住んでいますか？",options:[
+        {text:"バルコニーなしの小さなアパート",dog:1,cat:4},
+        {text:"バルコニーありの普通のアパート",dog:2,cat:3},
+        {text:"広めのアパート / 一戸建て",dog:4,cat:2},
+        {text:"広い庭付きの家 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"1日に何時間家にいますか？",options:[
+        {text:"ほとんどいない — ワーカホリック 😅",dog:1,cat:5},
+        {text:"3〜5時間",dog:2,cat:4},
+        {text:"8〜10時間",dog:4,cat:2},
+        {text:"在宅ワーク、ほぼ家にいる 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"どのくらいアクティブですか？",options:[
+        {text:"ソファが親友 🛋️",dog:1,cat:5},
+        {text:"気が向いたときに散歩",dog:2,cat:3},
+        {text:"毎日散歩する",dog:4,cat:2},
+        {text:"マラソン・ジム通い 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"1ヶ月のペット費用はどのくらいですか？",options:[
+        {text:"最低限 — 自分も必死 😭",dog:1,cat:3},
+        {text:"5000円くらい",dog:2,cat:4},
+        {text:"15000円くらい",dog:3,cat:3},
+        {text:"ペットにスパを楽しませたい 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"旅行の頻度は？",options:[
+        {text:"毎月 — 旅行好き",dog:1,cat:4},
+        {text:"年に数回",dog:2,cat:3},
+        {text:"ほとんどしない",dog:4,cat:3},
+        {text:"ほぼ家から出ない — インドア派",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"散らかりや騒音はどう感じますか？",options:[
+        {text:"完璧な静けさと秩序が必要",dog:1,cat:4},
+        {text:"少し散らかっていても大丈夫",dog:2,cat:4},
+        {text:"カオス？全然OK 😅",dog:4,cat:3},
+        {text:"もうすでにカオスの中に住んでいる 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"ペットとどんな関係を望みますか？",options:[
+        {text:"お互いに自由に過ごしたい",dog:1,cat:5},
+        {text:"たまに一緒にいてくれれば",dog:1,cat:4},
+        {text:"毎日一緒に遊びたい",dog:5,cat:2},
+        {text:"どこへでもついてきてほしい！🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"グルーミングやケアの準備はできていますか？",options:[
+        {text:"最低限 — 自分で清潔にしてほしい",dog:1,cat:5},
+        {text:"たまにブラッシング / お風呂できる",dog:2,cat:4},
+        {text:"定期的にシャンプーや散歩OK",dog:4,cat:2},
+        {text:"毎日でも大丈夫 — 勤勉です！",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"あなたには犬がぴったりです！",
+        subs:["いつも側にいる忠実な友","外に出る動機づけをしてくれる","無条件の愛と献身 🥰"],
+        breeds:["ラブラドール 🟡","ビーグル 🐕","ハスキー 🐺","コーギー 🍑"]},
+      cat:{emoji:"🐱",title:"あなたには猫がぴったりです！",
+        subs:["自立していて常に注目する必要なし","仕事中も一人で過ごせる","最小限のケア — 最大限の癒し"],
+        breeds:["ブリティッシュショートヘア 🇬🇧","メインクーン 🦁","スコティッシュフォールド 👂","スフィンクス 👽"]},
+      both:{emoji:"🐶🐱",title:"どちらもあなたに合っています！",
+        subs:["どんなペットも飼える万能オーナー","両方飼ってもOK — 友達になれる！","心が動かされた方を選んでみて 💕"],
+        breeds:["猫 + 犬 = 家族 🏡","コーギー + ブリティッシュ = ❤️","ハスキー + メインクーン = 🔥"]},
+    }
+  },
+
+  ru:{
+    dogWord:"Собака", catWord:"Кошка",
+    sub:"8 вопросов — узнай, кто создан именно для тебя 🔍",
+    hint:"Честно отвечай — питомец зависит от этого!",
+    btn:"Начать! 🚀",
+    qOf:"Вопрос {n} из {total}",
+    lbDog:"🐶 Собака", lbCat:"🐱 Кошка",
+    breedsLabel:"Подойдут породы:",
+    restart:"🔄 Пройти снова",
+    shareLabel:"Поделись результатом 🐾",
+    shareText:"Мой результат: {title}! 🐶🐱 Ты — собачник или кошатник? Пройди тест!",
+    pageTitle:"Собака или Кошка — Бесплатный Тест из 8 Вопросов",
+    metaDesc:"Собака или кошка? Бесплатный тест из 8 вопросов — узнай, какой питомец идеально подходит твоему образу жизни. Пройди прямо сейчас!",
+    metaKeywords:"собака или кошка тест, тест питомец, какой питомец мне подходит, викторина питомец, бесплатный тест",
+    questions:[
+      {emoji:"🏠",text:"Где ты живёшь?",options:[
+        {text:"Маленькая квартира без балкона",dog:1,cat:4},
+        {text:"Обычная квартира с балконом",dog:2,cat:3},
+        {text:"Большая квартира / дом",dog:4,cat:2},
+        {text:"Дом с большим двором 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"Сколько часов в день ты дома?",options:[
+        {text:"Почти никогда — вечный трудоголик 😅",dog:1,cat:5},
+        {text:"3–5 часов",dog:2,cat:4},
+        {text:"8–10 часов",dog:4,cat:2},
+        {text:"Работаю из дома, никуда не хожу 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"Насколько ты активный человек?",options:[
+        {text:"Диван — мой лучший друг 🛋️",dog:1,cat:5},
+        {text:"Иногда гуляю по настроению",dog:2,cat:3},
+        {text:"Гуляю каждый день",dog:4,cat:2},
+        {text:"Бегаю марафоны, тренируюсь 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"Сколько готов тратить на питомца в месяц?",options:[
+        {text:"Минимум — сам еле выживаю 😭",dog:1,cat:3},
+        {text:"До 3 000 руб.",dog:2,cat:4},
+        {text:"До 8 000 руб.",dog:3,cat:3},
+        {text:"Питомец заслуживает СПА 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"Как часто ты уезжаешь / путешествуешь?",options:[
+        {text:"Каждый месяц куда-то лечу",dog:1,cat:4},
+        {text:"Несколько раз в год",dog:2,cat:3},
+        {text:"Очень редко",dog:4,cat:3},
+        {text:"Никуда не езжу, я домосед",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"Как ты относишься к беспорядку и шуму?",options:[
+        {text:"Мне нужна идеальная тишина и порядок",dog:1,cat:4},
+        {text:"Небольшой беспорядок — терплю",dog:2,cat:4},
+        {text:"Хаос? Не проблема 😅",dog:4,cat:3},
+        {text:"Моя жизнь — уже полный хаос 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"Какие отношения с питомцем хочешь?",options:[
+        {text:"Пусть живёт своей жизнью, я — своей",dog:1,cat:5},
+        {text:"Иногда поглажу, не более",dog:1,cat:4},
+        {text:"Хочу дружбу и игры каждый день",dog:5,cat:2},
+        {text:"Он должен везде ходить за мной! 🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"Готов ли ты к уходу и гигиене питомца?",options:[
+        {text:"Минимум усилий — пусть сам себя чистит",dog:1,cat:5},
+        {text:"Иногда могу расчесать / помыть",dog:2,cat:4},
+        {text:"Готов купать и выгуливать регулярно",dog:4,cat:2},
+        {text:"Хоть каждый день — мне не лень!",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"Тебе идеально подходит СОБАКА!",
+        subs:["Верный друг, всегда рядом","Замотивирует тебя на прогулки","Безграничная любовь и преданность 🥰"],
+        breeds:["Лабрадор 🟡","Бигль 🐕","Хаски 🐺","Корги 🍑"]},
+      cat:{emoji:"🐱",title:"Тебе идеально подходит КОШКА!",
+        subs:["Независимая, не требует постоянного внимания","Справляется одна, пока ты на работе","Уход минимальный — максимум уюта"],
+        breeds:["Британская 🇬🇧","Мейн-кун 🦁","Шотландская вислоухая 👂","Сфинкс 👽"]},
+      both:{emoji:"🐶🐱",title:"Тебе подойдут оба!",
+        subs:["Ты универсальный владелец питомца","Можешь завести обоих — они подружатся!","Просто выбери того, кто тронет сердце 💕"],
+        breeds:["Кошка + Собака = Семья 🏡","Корги + Британская = ❤️","Хаски + Мейн-кун = 🔥"]},
+    }
+  },
+
+  hy:{
+    dogWord:"Շուն", catWord:"Կատու",
+    sub:"8 հարց — պարզիր, թե ով է ստեղծված հատուկ քեզ համար 🔍",
+    hint:"Անկեղծ պատասխանիր — կենդանիդ կախված է դրանից!",
+    btn:"Սկսել! 🚀",
+    qOf:"{n} / {total} հարց",
+    lbDog:"🐶 Շուն", lbCat:"🐱 Կատու",
+    breedsLabel:"Խորհուրդ ցեղատեսակներ:",
+    restart:"🔄 Կրկին",
+    shareLabel:"Կիսվիր արդյունքով 🐾",
+    shareText:"Իմ արդյունքը՝ {title}! 🐶🐱 Շան սիրահա՞ր ես, թե կատվի: Անցիր թեստը!",
+    pageTitle:"Շուն, թե Կատու — Անվճար Թեստ (8 Հարց)",
+    metaDesc:"Շուն, թե՞ կատու? 8 հարցով անվճար թեստ ― պարզիր, թե որ կենդանին քո ապրելակերպին ամենահարմарն է: Փորձիր հիմա!",
+    metaKeywords:"շուն կատու թեստ, կենդանի թեստ, շուն կատու քվիզ",
+    questions:[
+      {emoji:"🏠",text:"Որտե՞ղ ես ապրում",options:[
+        {text:"Փոքր բնակարան առանց պատշգամբ",dog:1,cat:4},
+        {text:"Սովորական բնակարան պատշգամբով",dog:2,cat:3},
+        {text:"Մեծ բնակարան / տուն",dog:4,cat:2},
+        {text:"Տուն մեծ բակով 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"Օրական քանի՞ ժամ տանն ես",options:[
+        {text:"Գրեթե երբեք — աշխատամոլ 😅",dog:1,cat:5},
+        {text:"3–5 ժամ",dog:2,cat:4},
+        {text:"8–10 ժամ",dog:4,cat:2},
+        {text:"Տնից եմ աշխատում 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"Որքա՞ն ակտիվ ես",options:[
+        {text:"Բազմոցն իմ ամենամտերիմ ընկերն է 🛋️",dog:1,cat:5},
+        {text:"Երբեմն զբոսնում եմ",dog:2,cat:3},
+        {text:"Ամեն օր զբոսնում եմ",dog:4,cat:2},
+        {text:"Մարաֆոն, մարզասրահ 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"Ամսական քանի՞ կարող ես ծախսել կենդանու վրա",options:[
+        {text:"Նվազագույն — ինքս հազիվ 😭",dog:1,cat:3},
+        {text:"Մինչև 10,000 դրամ",dog:2,cat:4},
+        {text:"Մինչև 25,000 դրամ",dog:3,cat:3},
+        {text:"Կենդանիս արժանի է SPA-ի 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"Որքա՞ն հաճախ ես ճամփորդում",options:[
+        {text:"Ամեն ամիս — ճամփորդության կախյալ",dog:1,cat:4},
+        {text:"Տարին մի քանի անգամ",dog:2,cat:3},
+        {text:"Շատ հազվադեպ",dog:4,cat:3},
+        {text:"Երբեք — տնամոլ եմ",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"Ինչպե՞ս ես վերաբերվում անկարգությանը",options:[
+        {text:"Կարիք ունեմ կատարյալ լռության",dog:1,cat:4},
+        {text:"Փոքր անկարգությունը կարելի է",dog:2,cat:4},
+        {text:"Քաո՞ս — խնդիր չկա 😅",dog:4,cat:3},
+        {text:"Կյանքս արդեն քաոս է 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"Ի՞նչ հարաբերություն ես ուզում կենդանու հետ",options:[
+        {text:"Թող ապրի իր կյանքով",dog:1,cat:5},
+        {text:"Երբեմն կողքս լինի",dog:1,cat:4},
+        {text:"Ամեն օր խաղանք միասին",dog:5,cat:2},
+        {text:"Ամենուր հետևի ինձ! 🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"Պատրա՞ստ ես խնամք ու հիգիենայի",options:[
+        {text:"Նվազագույն — ինքն ինքն իրեն մաքրի",dog:1,cat:5},
+        {text:"Երբեմն կարող եմ սանրել / լողացնել",dog:2,cat:4},
+        {text:"Պատրաստ եմ կանոնավոր կերպով",dog:4,cat:2},
+        {text:"Ամեն օր — ծույլ չեմ!",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"Շունն է կատարյալ քո համար!",
+        subs:["Հավատարիم ընկեր, միշտ կողքիդ","Կդրդի դուրս գնալ","Անպայման սեր ու նվիրվածություն 🥰"],
+        breeds:["Լաբրադոր 🟡","Բիգլ 🐕","Հասքի 🐺","Կորգի 🍑"]},
+      cat:{emoji:"🐱",title:"Կատուն է կատարյալ քո համար!",
+        subs:["Անկախ, հաստատ ուշադրություն չի պահանջում","Հանգիստ կլինի, երբ աշխատանքի ես","Նվազ խնամք — մաքսիմ հարմարավետություն"],
+        breeds:["Բրիտանական 🇬🇧","Մեյն-կուն 🦁","Շոտլ. ծալախուն 👂","Սֆինքս 👽"]},
+      both:{emoji:"🐶🐱",title:"Երկուսն էլ հարմար են!",
+        subs:["Դու ունիվերսալ կենդանու տեր ես","Կարող ես երկուսն էլ վերցնել!","Ընտրիր սրտիդ մոտ գտնվողին 💕"],
+        breeds:["Կատու + Շուն = Ընտանիք 🏡","Կորգի + Բրիտ. = ❤️","Հասքի + Մեյն-կուն = 🔥"]},
+    }
+  },
+
+  fr:{
+    dogWord:"Chien", catWord:"Chat",
+    sub:"8 questions — découvre qui est fait pour toi 🔍",
+    hint:"Réponds honnêtement — ton animal en dépend !",
+    btn:"Commencer ! 🚀",
+    qOf:"Question {n} sur {total}",
+    lbDog:"🐶 Chien", lbCat:"🐱 Chat",
+    breedsLabel:"Races recommandées :",
+    restart:"🔄 Recommencer",
+    shareLabel:"Partage ton résultat 🐾",
+    shareText:"Mon résultat : {title} ! 🐶🐱 Plutôt chien ou chat ? Fais le quiz !",
+    pageTitle:"Chien ou Chat — Quiz Gratuit en 8 Questions | Test Animaux",
+    metaDesc:"Chien ou Chat ? Quiz gratuit en 8 questions pour découvrir quel animal de compagnie correspond à ton style de vie. Essaie maintenant !",
+    metaKeywords:"quiz chien ou chat, test animaux de compagnie, chien ou chat test, quel animal me convient, quiz animal gratuit",
+    questions:[
+      {emoji:"🏠",text:"Où habites-tu ?",options:[
+        {text:"Petit appartement sans balcon",dog:1,cat:4},
+        {text:"Appartement normal avec balcon",dog:2,cat:3},
+        {text:"Grand appartement / maison",dog:4,cat:2},
+        {text:"Maison avec grand jardin 🏡",dog:5,cat:1},
+      ]},
+      {emoji:"⏰",text:"Combien d'heures es-tu chez toi par jour ?",options:[
+        {text:"Presque jamais — accro au boulot 😅",dog:1,cat:5},
+        {text:"3 à 5 heures",dog:2,cat:4},
+        {text:"8 à 10 heures",dog:4,cat:2},
+        {text:"Je travaille à domicile 🏠",dog:5,cat:2},
+      ]},
+      {emoji:"🏃",text:"À quel point es-tu actif·ve ?",options:[
+        {text:"Le canapé est mon meilleur ami 🛋️",dog:1,cat:5},
+        {text:"Je me promène parfois",dog:2,cat:3},
+        {text:"Je marche tous les jours",dog:4,cat:2},
+        {text:"Marathon et salle de sport 🏅",dog:5,cat:1},
+      ]},
+      {emoji:"💰",text:"Quel budget mensuel pour ton animal ?",options:[
+        {text:"Minimum — je survis à peine 😭",dog:1,cat:3},
+        {text:"Jusqu'à 40 €",dog:2,cat:4},
+        {text:"Jusqu'à 100 €",dog:3,cat:3},
+        {text:"Mon animal mérite le spa 💅",dog:5,cat:4},
+      ]},
+      {emoji:"✈️",text:"À quelle fréquence voyages-tu ?",options:[
+        {text:"Chaque mois — voyageur·se compulsif·ve",dog:1,cat:4},
+        {text:"Quelques fois par an",dog:2,cat:3},
+        {text:"Très rarement",dog:4,cat:3},
+        {text:"Jamais — je suis casanier·ère",dog:5,cat:3},
+      ]},
+      {emoji:"😤",text:"Comment supportes-tu le désordre et le bruit ?",options:[
+        {text:"J'ai besoin d'un silence et d'un ordre parfaits",dog:1,cat:4},
+        {text:"Un peu de désordre, ça va",dog:2,cat:4},
+        {text:"Le chaos ? Aucun problème 😅",dog:4,cat:3},
+        {text:"Ma vie est déjà le chaos total 🌪️",dog:4,cat:2},
+      ]},
+      {emoji:"🤝",text:"Quelle relation veux-tu avec ton animal ?",options:[
+        {text:"Chacun vit sa vie",dog:1,cat:5},
+        {text:"Qu'il soit là de temps en temps",dog:1,cat:4},
+        {text:"Amis, jouer ensemble tous les jours",dog:5,cat:2},
+        {text:"Il doit me suivre partout ! 🥰",dog:5,cat:1},
+      ]},
+      {emoji:"🧼",text:"Es-tu prêt·e pour le toilettage ?",options:[
+        {text:"Effort minimum — qu'il se nettoie tout seul",dog:1,cat:5},
+        {text:"Je peux le brosser / baigner parfois",dog:2,cat:4},
+        {text:"Prêt·e à brosser et promener régulièrement",dog:4,cat:2},
+        {text:"Tous les jours, ça me va — je suis motivé·e !",dog:5,cat:1},
+      ]},
+    ],
+    results:{
+      dog:{emoji:"🐶",title:"Un CHIEN est parfait pour toi !",
+        subs:["Un ami fidèle, toujours à tes côtés","Il te motivera à sortir et bouger","Amour et dévouement inconditionnels 🥰"],
+        breeds:["Labrador 🟡","Beagle 🐕","Husky 🐺","Corgi 🍑"]},
+      cat:{emoji:"🐱",title:"Un CHAT est parfait pour toi !",
+        subs:["Indépendant, n'a pas besoin d'attention constante","Se débrouille seul pendant ton travail","Entretien minimal — confort maximal"],
+        breeds:["Britannique poil court 🇬🇧","Maine Coon 🦁","Scottish Fold 👂","Sphinx 👽"]},
+      both:{emoji:"🐶🐱",title:"Les deux te conviennent !",
+        subs:["Tu es un propriétaire universel","Tu pourrais avoir les deux — ils deviendraient amis !","Choisis celui qui touche ton cœur 💕"],
+        breeds:["Chat + Chien = Famille 🏡","Corgi + Britannique = ❤️","Husky + Maine Coon = 🔥"]},
+    }
+  },
+};
+
+// ── STATE ──────────────────────────────────────────────────────
+let lang = "en";
+let currentQ = 0;
+let scores = {dog:0, cat:0};
+let busy = false;
+const BG_ICONS = ["🐕","🐈","🦴","🐾","🐩","🐱","🦮","😺","🐕‍🦺","😸"];
+
+// ── FLOATERS ───────────────────────────────────────────────────
+(function createFloaters(){
+  for(let i=0;i<14;i++){
+    const d=document.createElement("div");
+    d.className="floater";
+    d.textContent=BG_ICONS[i%BG_ICONS.length];
+    d.style.cssText=`left:${Math.random()*100}%;font-size:${1.1+Math.random()*1.4}rem;animation-duration:${8+Math.random()*8}s;animation-delay:${Math.random()*10}s;`;
+    document.body.appendChild(d);
+  }
+})();
+
+// ── LANGUAGE ───────────────────────────────────────────────────
+function toggleLangMenu(){
+  const menu=document.getElementById('lang-menu');
+  const trigger=document.getElementById('lang-trigger');
+  const isOpen=menu.classList.contains('open');
+  menu.classList.toggle('open',!isOpen);
+  trigger.classList.toggle('open',!isOpen);
+  trigger.setAttribute('aria-expanded',String(!isOpen));
+}
+function selectLang(l){
+  closeLangMenu();
+  setLang(l);
+}
+function closeLangMenu(){
+  document.getElementById('lang-menu').classList.remove('open');
+  document.getElementById('lang-trigger').classList.remove('open');
+  document.getElementById('lang-trigger').setAttribute('aria-expanded','false');
+}
+function setLang(l){
+  if(!T[l]) return;
+  lang=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lang-item').forEach(b=>{
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  const activeItem=document.querySelector('.lang-item[data-lang="'+l+'"]');
+  if(activeItem){
+    const flag=activeItem.querySelector('.item-flag').textContent;
+    const labelText=activeItem.textContent.replace('✓','').trim();
+    document.querySelector('#lang-trigger .trigger-flag').textContent=flag;
+    document.getElementById('trigger-label').textContent=labelText;
+  }
+  updateIntroText();
+  if(document.getElementById('quiz').style.display!=='none') renderQuestion();
+  else if(document.getElementById('result').style.display!=='none') showResult();
+}
+
+function t(){ return T[lang]; }
+
+function updateIntroText(){
+  const d=t();
+  document.getElementById("i-dog").textContent=d.dogWord;
+  document.getElementById("i-cat").textContent=d.catWord;
+  // re-set the "or" word — keep it simple, between the spans
+  document.getElementById("intro").querySelector("h1").innerHTML=
+    `<span class="dog">${d.dogWord}</span> <span style="color:rgba(255,255,255,.6);font-size:1.3rem">／</span> <span class="cat">${d.catWord}</span>`;
+  document.getElementById("i-sub").textContent=d.sub;
+  document.getElementById("i-hint").textContent=d.hint;
+  document.getElementById("i-btn").textContent=d.btn;
+  // set page title and html lang
+  document.title = d.pageTitle || `${d.dogWord} / ${d.catWord} — Pet Quiz`;
+  document.documentElement.lang = lang;
+  // update SEO meta tags and alternates
+  try{ updateSEO(); }catch(e){/* non-fatal */}
+}
+
+// ── SCREENS ────────────────────────────────────────────────────
+function show(id){
+  ["intro","quiz","result"].forEach(s=>{
+    document.getElementById(s).style.display=s===id?"block":"none";
+  });
+}
+
+// ── QUIZ ───────────────────────────────────────────────────────
+function startQuiz(){
+  sfxNext();
+  currentQ=0; scores={dog:0,cat:0}; busy=false;
+  renderQuestion();
+  show("quiz");
+}
+
+function renderQuestion(){
+  const d=t();
+  const q=d.questions[currentQ];
+  const qLabel=d.qOf.replace("{n}",currentQ+1).replace("{total}",d.questions.length);
+
+  document.getElementById("q-counter").textContent=qLabel;
+  document.getElementById("q-scores").textContent=`🐶 ${scores.dog} | 🐱 ${scores.cat}`;
+  document.getElementById("progress-fill").style.width=((currentQ/d.questions.length)*100)+"%";
+  document.getElementById("q-emoji").textContent=q.emoji;
+  document.getElementById("q-text").textContent=q.text;
+  document.getElementById("lb-dog").textContent=d.lbDog;
+  document.getElementById("lb-cat").textContent=d.lbCat;
+  updateScoreBars();
+
+  const opts=document.getElementById("options");
+  opts.innerHTML="";
+  q.options.forEach((opt,i)=>{
+    const btn=document.createElement("button");
+    btn.type = 'button';
+    btn.className="opt";
+    btn.style.animation=`slideRight .3s ease ${i*.07}s both`;
+    btn.setAttribute('aria-pressed','false');
+    btn.setAttribute('aria-label', `Answer option ${i+1}: ${opt.text}`);
+    btn.innerHTML=`<span class="num">${i+1}.</span><span class="label">${opt.text}</span>`;
+    btn.onclick=()=>pickAnswer(opt,btn);
+    opts.appendChild(btn);
+  });
+}
+
+function pickAnswer(opt,btn){
+  if(busy)return;
+  busy=true;
+  sfxClick();
+  const isDog=opt.dog>=opt.cat;
+  btn.classList.add(isDog?"sel-dog":"sel-cat");
+  btn.querySelector(".num").textContent=isDog?"🐶":"🐱";
+  btn.setAttribute('aria-pressed','true');
+  btn.disabled = true;
+
+  setTimeout(()=>{
+    document.querySelectorAll(".opt").forEach(b=>b.classList.add("fading"));
+    setTimeout(()=>{
+      scores.dog+=opt.dog; scores.cat+=opt.cat;
+      currentQ++;
+      const d=t();
+      if(currentQ>=d.questions.length){ sfxResult(); showResult(); }
+      else { sfxNext(); busy=false; renderQuestion(); }
+    },280);
+  },480);
+}
+
+function updateScoreBars(){
+  const max=40;
+  document.getElementById("dog-score-label").textContent=scores.dog;
+  document.getElementById("cat-score-label").textContent=scores.cat;
+  document.getElementById("dog-bar").style.width=((scores.dog/max)*100)+"%";
+  document.getElementById("cat-bar").style.width=((scores.cat/max)*100)+"%";
+}
+
+// ── RESULT ─────────────────────────────────────────────────────
+function showResult(){
+  const d=t();
+  const diff=Math.abs(scores.dog-scores.cat);
+  let res;
+  if(diff<=3)res=d.results.both;
+  else if(scores.dog>scores.cat)res=d.results.dog;
+  else res=d.results.cat;
+
+  const COLOR=res===d.results.dog?"#FFD700":res===d.results.cat?"#FF6B9D":"#64FFDA";
+  const GLOW=res===d.results.dog?"rgba(255,215,0,0.4)":res===d.results.cat?"rgba(255,107,157,0.4)":"rgba(100,255,218,0.3)";
+
+  const card=document.getElementById("result-card");
+  card.style.border=`2px solid ${COLOR}55`;
+  card.style.setProperty("--glow",GLOW);
+
+  document.getElementById("res-emoji").textContent=res.emoji;
+  const title=document.getElementById("res-title");
+  title.textContent=res.title;
+  title.style.color=COLOR;
+  title.style.textShadow=`0 0 20px ${COLOR}66`;
+
+  const reasons=document.getElementById("res-reasons");
+  reasons.innerHTML="";
+  res.subs.forEach(s=>{
+    const div=document.createElement("div");
+    div.className="reason";
+    div.style.cssText=`background:${COLOR}15;border:1px solid ${COLOR}33`;
+    div.innerHTML=`<span class="check" style="color:${COLOR}">✓</span>${s}`;
+    reasons.appendChild(div);
+  });
+
+  document.getElementById("res-breeds-label").textContent=d.breedsLabel;
+  const breeds=document.getElementById("res-breeds");
+  breeds.innerHTML="";
+  res.breeds.forEach(b=>{
+    const span=document.createElement("span");
+    span.className="breed-tag";
+    span.style.cssText=`background:${COLOR}20;border:1px solid ${COLOR}44;color:${COLOR}`;
+    span.textContent=b;
+    breeds.appendChild(span);
+  });
+
+  const max=40;
+  document.getElementById("final-dog-num").textContent=`🐶 ${scores.dog}`;
+  document.getElementById("final-cat-num").textContent=`🐱 ${scores.cat}`;
+
+  const rb=document.getElementById("restart-btn");
+  rb.textContent=d.restart;
+  rb.style.background=COLOR;
+
+  // update share links
+  const shareMsg=d.shareText.replace('{title}',res.emoji+' '+res.title);
+  const shareUrl=window.location.href;
+  const enc=encodeURIComponent(shareMsg);
+  const encUrl=encodeURIComponent(shareUrl);
+  document.getElementById('sh-tw').href='https://twitter.com/intent/tweet?text='+enc+'&url='+encUrl;
+  document.getElementById('sh-wh').href='https://api.whatsapp.com/send?text='+enc+'%20'+encUrl;
+  document.getElementById('sh-tg').href='https://t.me/share/url?url='+encUrl+'&text='+enc;
+  document.getElementById('sh-vk').href='https://vk.com/share.php?url='+encUrl+'&title='+enc;
+  document.getElementById('share-label').textContent=d.shareLabel;
+
+  show("result");
+
+  setTimeout(()=>{
+    document.getElementById("final-dog-bar").style.width=((scores.dog/max)*100)+"%";
+    document.getElementById("final-cat-bar").style.width=((scores.cat/max)*100)+"%";
+  },200);
+
+  // confetti
+  for(let i=0;i<14;i++){
+    const c=document.createElement("div");
+    c.className="confetti-dot";
+    c.style.cssText=`left:${10+Math.random()*80}%;top:${Math.random()*50}%;background:${i%2===0?COLOR:"#fff"};animation:confettiAnim ${1+Math.random()}s ease ${Math.random()*.5}s 3 forwards;`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+
+// ── SOUNDS (Web Audio API) ──────────────────────────────────────
+const _ac=(()=>{ try{ return new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ return null; } })();
+function _resumeAC(){ if(_ac && _ac.state==='suspended') _ac.resume(); }
+function _playTone(freq,type,vol,dur,bend){
+  if(!_ac) return;
+  _resumeAC();
+  const o=_ac.createOscillator();
+  const g=_ac.createGain();
+  o.connect(g); g.connect(_ac.destination);
+  o.type=type||'sine';
+  o.frequency.setValueAtTime(freq,_ac.currentTime);
+  if(bend) o.frequency.linearRampToValueAtTime(bend,_ac.currentTime+dur);
+  g.gain.setValueAtTime(vol||0.18,_ac.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001,_ac.currentTime+dur);
+  o.start(); o.stop(_ac.currentTime+dur);
+}
+function sfxClick(){
+  _playTone(520,'square',0.12,0.07,380);
+}
+function sfxNext(){
+  _playTone(320,'sine',0.13,0.18,480);
+  setTimeout(()=>_playTone(440,'sine',0.10,0.14),80);
+}
+function sfxResult(){
+  [[523,0],[659,80],[784,160],[1047,260]].forEach(([f,d])=>{
+    setTimeout(()=>_playTone(f,'triangle',0.15,0.35),d);
+  });
+}
+function sfxRestart(){
+  _playTone(440,'sine',0.11,0.18,300);
+  setTimeout(()=>_playTone(330,'sine',0.08,0.22),120);
+}
+
+// ── RESTART ────────────────────────────────────────────────────
+function restart(){
+  sfxRestart();
+  scores={dog:0,cat:0}; currentQ=0; busy=false;
+  updateIntroText();
+  show("intro");
+}
+function copyShareLink(){
+  const url=window.location.href;
+  const btn=document.getElementById('sh-copy');
+  const orig=btn.textContent;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>{ btn.textContent='✓ Copied'; setTimeout(()=>{ btn.textContent=orig; },2000); });
+  } else {
+    const ta=document.createElement('textarea');
+    ta.value=url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    btn.textContent='✓ Copied'; setTimeout(()=>{ btn.textContent=orig; },2000);
+  }
+}
+// Update SEO meta tags, canonical and hreflang alternates dynamically
+function updateSEO(){
+  try{
+    const d = t();
+    const desc = d.metaDesc || d.sub || 'Free 8-question quiz: Dog or Cat? Find out which pet perfectly matches your lifestyle.';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc) metaDesc.setAttribute('content', desc);
+
+    // keywords
+    let kwMeta = document.querySelector('meta[name="keywords"]');
+    if(!kwMeta){ kwMeta=document.createElement('meta'); kwMeta.name='keywords'; document.head.appendChild(kwMeta); }
+    if(d.metaKeywords) kwMeta.setAttribute('content', d.metaKeywords);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if(ogTitle) ogTitle.setAttribute('content', document.title);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if(ogDesc) ogDesc.setAttribute('content', desc);
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if(twitterTitle) twitterTitle.setAttribute('content', document.title);
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+    if(twitterDesc) twitterDesc.setAttribute('content', desc);
+
+    // og:locale
+    const localeMap={en:'en_US',es:'es_ES',ko:'ko_KR',zh:'zh_CN',ja:'ja_JP',ru:'ru_RU',hy:'hy_AM',fr:'fr_FR'};
+    let ogLocale = document.querySelector('meta[property="og:locale"]');
+    if(!ogLocale){ ogLocale=document.createElement('meta'); ogLocale.setAttribute('property','og:locale'); document.head.appendChild(ogLocale); }
+    ogLocale.setAttribute('content', localeMap[lang] || 'en_US');
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if(!canonical){ canonical = document.createElement('link'); canonical.rel='canonical'; document.head.appendChild(canonical); }
+    const url = new URL(window.location.href);
+    url.search = '';
+    canonical.href = url.toString();
+
+    // hreflang alternates (use ?lang=code so each language has its own URL)
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(n=>n.remove());
+    Object.keys(T).forEach(code=>{
+      const link = document.createElement('link');
+      link.rel = 'alternate'; link.hreflang = code;
+      const u = new URL(window.location.href);
+      u.searchParams.set('lang', code);
+      link.href = u.toString();
+      document.head.appendChild(link);
+    });
+    const defaultLink = document.createElement('link');
+    defaultLink.rel = 'alternate'; defaultLink.hreflang = 'x-default';
+    const u2 = new URL(window.location.href); u2.searchParams.set('lang','en'); defaultLink.href = u2.toString();
+    document.head.appendChild(defaultLink);
+
+    // update JSON-LD block
+    const ld = document.getElementById('ld-json');
+    if(ld){
+      let obj={};
+      try{ obj = JSON.parse(ld.textContent); }catch(e){}
+      obj.name = document.title;
+      obj.description = desc;
+      obj.inLanguage = Object.keys(T);
+      ld.textContent = JSON.stringify(obj);
+    }
+  }catch(e){ console.warn('SEO update failed', e); }
+}
+
+document.addEventListener('click',function(e){
+  const wrap=document.getElementById('lang-dropdown-wrap');
+  if(wrap && !wrap.contains(e.target)) closeLangMenu();
+});
+
+// Init
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+updateIntroText();
+// apply lang from URL param or navigator language when possible
+try{
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get('lang');
+  if(requested && T[requested]) setLang(requested);
+  else {
+    const nav = (navigator.language||navigator.userLanguage||'').slice(0,2);
+    if(nav && T[nav]) setLang(nav);
+  }
+}catch(e){}
+updateSEO();
+</script>
+</body>
+</html>
